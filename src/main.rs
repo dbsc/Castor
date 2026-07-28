@@ -1,20 +1,26 @@
-use std::fs;
+use std::{fs, result};
 fn reader() -> Vec<u8> {
     let path = "/home/dbsc/litelab-crm/docker-compose.yml";
     let contents = fs::read(path).expect("can't read files");
     contents
 }
-fn crasher() -> String {
+fn crasher() -> Vec<u8> {
     let check = reader();
-    let mut full = String::new();
+    let mut full: Vec<u8> = Vec::new();
     let kol = check.len();
     for i in 0..kol {
-        let num_toas = check[i].to_string();
-        full.push_str(&num_toas);
+        let byte = check[i];
+        if byte == 44 {
+            break;
+        }
+        full.push(byte);
     }
     full
 }
 fn main() {
-    let rusult = crasher();
-    println!("{rusult:?}");
+    let result = crasher();
+    for byte in result {
+        print!("{byte}");
+    }
+    println!();
 }
