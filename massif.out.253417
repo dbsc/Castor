@@ -1,0 +1,321 @@
+desc: (none)
+cmd: ./target/release/Castor
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=270639
+mem_heap_B=472
+mem_heap_extra_B=16
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=271193
+mem_heap_B=592
+mem_heap_extra_B=32
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=271355
+mem_heap_B=1616
+mem_heap_extra_B=40
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=296186
+mem_heap_B=1736
+mem_heap_extra_B=32
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=371518
+mem_heap_B=1736
+mem_heap_extra_B=32
+mem_stacks_B=0
+heap_tree=detailed
+n4: 1736 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 1024 0x49858B7: _IO_file_doallocate (in /usr/lib/libc.so.6)
+  n1: 1024 0x4995F45: _IO_doallocbuf (in /usr/lib/libc.so.6)
+   n1: 1024 0x499397E: _IO_file_underflow (in /usr/lib/libc.so.6)
+    n1: 1024 0x49875B4: getdelim (in /usr/lib/libc.so.6)
+     n1: 1024 0x499E069: pthread_getattr_np (in /usr/lib/libc.so.6)
+      n1: 1024 0x403A20D: std::rt::lang_start_internal (in /home/dbsc/Castor/target/release/Castor)
+       n0: 1024 0x4014C04: main (in /home/dbsc/Castor/target/release/Castor)
+ n1: 472 0x498653F: ??? (in /usr/lib/libc.so.6)
+  n1: 472 0x499DF17: pthread_getattr_np (in /usr/lib/libc.so.6)
+   n1: 472 0x403A20D: std::rt::lang_start_internal (in /home/dbsc/Castor/target/release/Castor)
+    n0: 472 0x4014C04: main (in /home/dbsc/Castor/target/release/Castor)
+ n1: 240 0x498744A: getdelim (in /usr/lib/libc.so.6)
+  n1: 240 0x499E069: pthread_getattr_np (in /usr/lib/libc.so.6)
+   n1: 240 0x403A20D: std::rt::lang_start_internal (in /home/dbsc/Castor/target/release/Castor)
+    n0: 240 0x4014C04: main (in /home/dbsc/Castor/target/release/Castor)
+ n0: 0 in 1 place, below massif's threshold (1.00%)
+#-----------
+snapshot=6
+#-----------
+time=371518
+mem_heap_B=1496
+mem_heap_extra_B=24
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=371833
+mem_heap_B=472
+mem_heap_extra_B=16
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=371961
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=372014
+mem_heap_B=32
+mem_heap_extra_B=8
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=10
+#-----------
+time=372142
+mem_heap_B=184
+mem_heap_extra_B=24
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=372197
+mem_heap_B=216
+mem_heap_extra_B=32
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=372260
+mem_heap_B=184
+mem_heap_extra_B=24
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=372341
+mem_heap_B=152
+mem_heap_extra_B=16
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=372370
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=15
+#-----------
+time=372817
+mem_heap_B=4
+mem_heap_extra_B=20
+mem_stacks_B=0
+heap_tree=detailed
+n8: 4 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 4 0x403CAD7: std::sys::pal::unix::stack_overflow::thread_info::set_current_info (in /home/dbsc/Castor/target/release/Castor)
+  n1: 4 0x403A33C: std::rt::lang_start_internal (in /home/dbsc/Castor/target/release/Castor)
+   n0: 4 0x4014C04: main (in /home/dbsc/Castor/target/release/Castor)
+ n1: 0 0x49858B7: _IO_file_doallocate (in /usr/lib/libc.so.6)
+  n1: 0 0x4995F45: _IO_doallocbuf (in /usr/lib/libc.so.6)
+   n1: 0 0x499397E: _IO_file_underflow (in /usr/lib/libc.so.6)
+    n1: 0 0x49875B4: getdelim (in /usr/lib/libc.so.6)
+     n1: 0 0x499E069: pthread_getattr_np (in /usr/lib/libc.so.6)
+      n1: 0 0x403A20D: std::rt::lang_start_internal (in /home/dbsc/Castor/target/release/Castor)
+       n0: 0 0x4014C04: main (in /home/dbsc/Castor/target/release/Castor)
+ n1: 0 0x498653F: ??? (in /usr/lib/libc.so.6)
+  n1: 0 0x499DF17: pthread_getattr_np (in /usr/lib/libc.so.6)
+   n1: 0 0x403A20D: std::rt::lang_start_internal (in /home/dbsc/Castor/target/release/Castor)
+    n0: 0 0x4014C04: main (in /home/dbsc/Castor/target/release/Castor)
+ n1: 0 0x498744A: getdelim (in /usr/lib/libc.so.6)
+  n1: 0 0x499E069: pthread_getattr_np (in /usr/lib/libc.so.6)
+   n1: 0 0x403A20D: std::rt::lang_start_internal (in /home/dbsc/Castor/target/release/Castor)
+    n0: 0 0x4014C04: main (in /home/dbsc/Castor/target/release/Castor)
+ n1: 0 0x4987585: getdelim (in /usr/lib/libc.so.6)
+  n1: 0 0x499E069: pthread_getattr_np (in /usr/lib/libc.so.6)
+   n1: 0 0x403A20D: std::rt::lang_start_internal (in /home/dbsc/Castor/target/release/Castor)
+    n0: 0 0x4014C04: main (in /home/dbsc/Castor/target/release/Castor)
+ n1: 0 0x499A5CB: ??? (in /usr/lib/libc.so.6)
+  n1: 0 0x499A91C: pthread_attr_setaffinity_np (in /usr/lib/libc.so.6)
+   n1: 0 0x499DE83: pthread_getattr_np (in /usr/lib/libc.so.6)
+    n1: 0 0x403A20D: std::rt::lang_start_internal (in /home/dbsc/Castor/target/release/Castor)
+     n0: 0 0x4014C04: main (in /home/dbsc/Castor/target/release/Castor)
+ n1: 0 0x499A944: pthread_attr_setaffinity_np (in /usr/lib/libc.so.6)
+  n1: 0 0x499DE83: pthread_getattr_np (in /usr/lib/libc.so.6)
+   n1: 0 0x403A20D: std::rt::lang_start_internal (in /home/dbsc/Castor/target/release/Castor)
+    n0: 0 0x4014C04: main (in /home/dbsc/Castor/target/release/Castor)
+ n1: 0 0x499DDC2: pthread_getattr_np (in /usr/lib/libc.so.6)
+  n1: 0 0x403A20D: std::rt::lang_start_internal (in /home/dbsc/Castor/target/release/Castor)
+   n0: 0 0x4014C04: main (in /home/dbsc/Castor/target/release/Castor)
+#-----------
+snapshot=16
+#-----------
+time=372905
+mem_heap_B=548
+mem_heap_extra_B=28
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=17
+#-----------
+time=373656
+mem_heap_B=2734
+mem_heap_extra_B=42
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=374036
+mem_heap_B=2742
+mem_heap_extra_B=58
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=374249
+mem_heap_B=2750
+mem_heap_extra_B=50
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=374461
+mem_heap_B=2766
+mem_heap_extra_B=50
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=374769
+mem_heap_B=2798
+mem_heap_extra_B=50
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=375269
+mem_heap_B=2862
+mem_heap_extra_B=50
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=23
+#-----------
+time=376153
+mem_heap_B=2990
+mem_heap_extra_B=50
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=377805
+mem_heap_B=3246
+mem_heap_extra_B=50
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=25
+#-----------
+time=380450
+mem_heap_B=3246
+mem_heap_extra_B=50
+mem_stacks_B=0
+heap_tree=peak
+n4: 3246 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 2186 0x403E9B4: std::fs::read::inner (in /home/dbsc/Castor/target/release/Castor)
+  n1: 2186 0x40149D4: Castor::main (in /home/dbsc/Castor/target/release/Castor)
+   n1: 2186 0x40148E2: std::sys::backtrace::__rust_begin_short_backtrace (in /home/dbsc/Castor/target/release/Castor)
+    n1: 2186 0x40148D8: std::rt::lang_start::{{closure}} (in /home/dbsc/Castor/target/release/Castor)
+     n1: 2186 0x403A403: std::rt::lang_start_internal (in /home/dbsc/Castor/target/release/Castor)
+      n0: 2186 0x4014C04: main (in /home/dbsc/Castor/target/release/Castor)
+ n1: 544 0x403CCD9: std::sys::pal::unix::stack_overflow::thread_info::set_current_info (in /home/dbsc/Castor/target/release/Castor)
+  n1: 544 0x403A33C: std::rt::lang_start_internal (in /home/dbsc/Castor/target/release/Castor)
+   n0: 544 0x4014C04: main (in /home/dbsc/Castor/target/release/Castor)
+ n1: 512 0x404D6F3: <alloc::raw_vec::RawVecInner>::finish_grow (in /home/dbsc/Castor/target/release/Castor)
+  n1: 512 0x404D692: <alloc::raw_vec::RawVec<u8>>::grow_one (in /home/dbsc/Castor/target/release/Castor)
+   n1: 512 0x4014A51: Castor::main (in /home/dbsc/Castor/target/release/Castor)
+    n1: 512 0x40148E2: std::sys::backtrace::__rust_begin_short_backtrace (in /home/dbsc/Castor/target/release/Castor)
+     n1: 512 0x40148D8: std::rt::lang_start::{{closure}} (in /home/dbsc/Castor/target/release/Castor)
+      n1: 512 0x403A403: std::rt::lang_start_internal (in /home/dbsc/Castor/target/release/Castor)
+       n0: 512 0x4014C04: main (in /home/dbsc/Castor/target/release/Castor)
+ n0: 4 in 9 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=26
+#-----------
+time=380450
+mem_heap_B=1060
+mem_heap_extra_B=36
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=380610
+mem_heap_B=2084
+mem_heap_extra_B=44
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=588594
+mem_heap_B=1572
+mem_heap_extra_B=36
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=589130
+mem_heap_B=548
+mem_heap_extra_B=28
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=30
+#-----------
+time=589540
+mem_heap_B=544
+mem_heap_extra_B=8
+mem_stacks_B=0
+heap_tree=empty
