@@ -1,2 +1,18 @@
 # Castor
-Free cloud storage based on time-barter and P2P network.
+
+```text
+                     .d888888888888b.
+                   .d8888888888888888b.
+                  d888888888888888Y88888b.
+                 d8888888888888888 " Y8888b
+ .d8888888b.     88888888888888888    88888
+d888888888888b..d888888888888888888  .8888P
+Y888888888888888888888888888P  Y88888888P"
+ "Y88888888P"   "Y88888888P"     │  │  │
+                                 └─ .──┘
+
+
+```
+
+A minimalist P2P file shredding utility built in Rust.
+
