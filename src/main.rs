@@ -1,5 +1,20 @@
 use rand::Rng;
 use std::fs;
+fn start() {
+    println!(
+        r#"                     .d888888888888b.
+                   .d8888888888888888b.
+                  d888888888888888Y88888b.
+                 d8888888888888888 " Y8888b
+ .d8888888b.     88888888888888888    88888
+d888888888888b..d888888888888888888  .8888P
+Y888888888888888888888888888P  Y88888888P"
+ "Y88888888P"   "Y88888888P"     │  │  │
+                                 └─ .──┘
+"#
+    );
+    println!("Alpha_0.2");
+}
 fn check_for_ten(num: u32) -> u32 {
     let mut add = 0;
     let remind = num % 10;
@@ -45,5 +60,6 @@ fn crasher() {
     println!("part10: {:?}", part10);
 }
 fn main() {
+    start();
     crasher();
 }
