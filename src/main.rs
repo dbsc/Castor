@@ -1,5 +1,5 @@
 use rand::Rng;
-use std::fs;
+use std::{fs, range};
 fn start() {
     println!(
         r#"                     .d888888888888b.
@@ -31,6 +31,7 @@ fn reader() -> Vec<u8> {
     contents
 }
 fn crasher() {
+    let mut parts = Vec::new();
     let mut check = reader();
     let kol = check.len();
     let forten = check_for_ten(kol as u32);
@@ -38,26 +39,12 @@ fn crasher() {
     check.extend((0..forten).map(|_| rng.gen_range(0..=255)));
     let size = check.len() / 10;
     let mut pieces = check.chunks_exact(size);
-    let part1 = pieces.next().unwrap();
-    let part2 = pieces.next().unwrap();
-    let part3 = pieces.next().unwrap();
-    let part4 = pieces.next().unwrap();
-    let part5 = pieces.next().unwrap();
-    let part6 = pieces.next().unwrap();
-    let part7 = pieces.next().unwrap();
-    let part8 = pieces.next().unwrap();
-    let part9 = pieces.next().unwrap();
-    let part10 = pieces.next().unwrap();
-    println!("part1: {:?}", part1);
-    println!("part2: {:?}", part2);
-    println!("part3: {:?}", part3);
-    println!("part4: {:?}", part4);
-    println!("part5: {:?}", part5);
-    println!("part6: {:?}", part6);
-    println!("part7: {:?}", part7);
-    println!("part8: {:?}", part8);
-    println!("part9: {:?}", part9);
-    println!("part10: {:?}", part10);
+    for _ in 0..10 {
+        parts.push(pieces.next().unwrap());
+    }
+    for (i, part) in parts.iter().enumerate() {
+        println!("part{}: {:?}", i + 1, part);
+    }
 }
 fn main() {
     start();
