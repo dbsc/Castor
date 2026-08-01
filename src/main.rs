@@ -13,7 +13,7 @@ Y888888888888888888888888888P  Y88888888P"
                                  └─ .──┘
 "#
     );
-    println!("Alpha_0.2");
+    println!("Alpha_0.3");
 }
 fn check_for_ten(num: u32) -> u32 {
     let mut add = 0;
