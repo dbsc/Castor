@@ -42,14 +42,20 @@ fn reader() -> Vec<u8> {
 
     if answer == "y" {
         println!("Write the path");
-        let mut user_input = String::new();
+        let mut path = String::new();
         io::stdin()
-            .read_line(&mut user_input)
+            .read_line(&mut path)
             .expect("Failed to read line");
 
-        final_path = user_input.trim().to_string();
+        let trimmed_user = path.trim().to_string();
+
+        if trimmed_user.is_empty() {
+            final_path = String::from("/home/nut/Castor/src/main.rs");
+        } else {
+            final_path = trimmed_user;
+        }
     } else {
-        final_path = String::from("/home/nut/Castor/src/main.rs"); //default
+        final_path = String::from("/home/nut/Castor/src/main.rs");
     }
 
     let contents = fs::read(&final_path)
