@@ -1,5 +1,7 @@
 use rand::Rng;
-use std::{fs, range};
+use std::fs;
+use std::io;
+
 fn start() {
     println!(
         r#"                     .d888888888888b.
@@ -13,8 +15,9 @@ Y888888888888888888888888888P  Y88888888P"
                                  └─ .──┘
 "#
     );
-    println!("Alpha_0.3");
+    println!("Alpha_0.4");
 }
+
 fn check_for_ten(num: u32) -> u32 {
     let mut add = 0;
     let remind = num % 10;
@@ -25,11 +28,35 @@ fn check_for_ten(num: u32) -> u32 {
     }
     add
 }
+
 fn reader() -> Vec<u8> {
-    let path = "/home/dbsc/litelab-crm/docker-compose.yml";
-    let contents = fs::read(path).expect("can't read files");
+    let final_path: String;
+
+    println!("Do you want to change the file path? (y / n)  [ default (n) ]  ");
+    let mut pathynyn = String::new();
+    io::stdin()
+        .read_line(&mut pathynyn)
+        .expect("incorrect input, try Y or N");
+
+    let answer = pathynyn.trim();
+
+    if answer == "y" {
+        println!("Write the path");
+        let mut user_input = String::new();
+        io::stdin()
+            .read_line(&mut user_input)
+            .expect("Failed to read line");
+
+        final_path = user_input.trim().to_string();
+    } else {
+        final_path = String::from("/home/nut/Castor/src/main.rs"); //default
+    }
+
+    let contents = fs::read(&final_path)
+        .expect(&format!("can't read file at: {}", final_path));
     contents
 }
+
 fn crasher() {
     let mut parts = Vec::new();
     let mut check = reader();
@@ -46,7 +73,9 @@ fn crasher() {
         println!("part{}: {:?}", i + 1, part);
     }
 }
+
 fn main() {
     start();
     crasher();
 }
+
