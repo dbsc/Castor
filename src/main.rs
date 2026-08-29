@@ -18,7 +18,7 @@ fn check_for_allig(num: usize, pieces_count: usize) -> usize {
     else if remind == 0 {
         add = 0;
     }
-        else {
+    else {
         add = pieces_count - remind;
     }
     add
@@ -26,7 +26,7 @@ fn check_for_allig(num: usize, pieces_count: usize) -> usize {
 
 fn reader() -> (Vec<u8>, String) {
     let final_path: String;
-    println!("Do you want to change the file path? (y / n)  [ default (n) ]  ");
+    println!("Do you want to change the file path? (y / n)  [ default (/etc/hosts) ]  ");
     let mut pathynyn = String::new();
     io::stdin()
         .read_line(&mut pathynyn)
@@ -43,12 +43,17 @@ fn reader() -> (Vec<u8>, String) {
         let trimmed_user = path.trim().to_string();
 
         if trimmed_user.is_empty() {
-            final_path = String::from("/home/nut/Castor/src/main.rs");
+            final_path = String::from("/etc/hosts");
         } else {
-            final_path = trimmed_user;
+            let home = std::env::var("HOME").unwrap_or_else(|_| String::from("."));
+            if trimmed_user.starts_with('~') {
+                final_path = trimmed_user.replacen('~', &home, 1);
+            } else {
+                final_path = trimmed_user;
+            }
         }
     } else {
-        final_path = String::from("/home/nut/Castor/src/main.rs");
+        final_path = String::from("/etc/hosts");
     }
 
     let contents = fs::read(&final_path)
@@ -87,7 +92,11 @@ fn crasher() {
     }
     let r = ReedSolomon::new(pieces_count, parity_count).unwrap();
     r.encode(&mut master_space).unwrap();
-    println!("Do you want to change the output directory? (y / n)  [ default (/home/nut/2Castor/) ]");
+
+    let home = std::env::var("HOME").unwrap_or_else(|_| String::from("."));
+    let default_dir = format!("{}/.castor_chunks/", home);
+
+    println!("Do you want to change the output directory? (y / n)  [ default (~/.castor_chunks/) ]");
     let mut dir_choice = String::new();
     io::stdin().read_line(&mut dir_choice).expect("Failed to read choice");
 
@@ -97,13 +106,20 @@ fn crasher() {
         io::stdin().read_line(&mut user_dir).expect("Failed to read directory");
         let trimmed_dir = user_dir.trim().to_string();
         if trimmed_dir.is_empty() {
-            String::from("/home/nut/2Castor/")
+            default_dir
         } else {
-            if trimmed_dir.ends_with('/') { trimmed_dir } else { format!("{}/", trimmed_dir) }
+            let replaced = if trimmed_dir.starts_with('~') {
+                trimmed_dir.replacen('~', &home, 1)
+            } else {
+                trimmed_dir
+            };
+            if replaced.ends_with('/') { replaced } else { format!("{}/", replaced) }
         }
     } else {
-        String::from("/home/nut/2Castor/")
+        default_dir
     };
+
+    fs::create_dir_all(&final_dir).expect("Failed to create output directory");
 
     let mut chunk_hashes = Vec::new();
 
@@ -159,7 +175,9 @@ fn restorer() {
     let clean_hash = manifest_hash.trim();
     println!("You chose hash: {}", clean_hash);
 
-    let mut auto_dir = String::from("/home/");
+    let home = std::env::var("HOME").unwrap_or_else(|_| String::from("."));
+    let mut auto_dir = format!("{}/.castor_chunks/", home);
+
     for line in links_content.lines() {
         if line.contains(clean_hash) {
             let parts: Vec<&str> = line.split(" | ").collect();
@@ -234,7 +252,7 @@ fn restorer() {
         }
     }
 
-    let home_restore_dir = String::from("/home/nut/CastorRestored/");
+    let home_restore_dir = format!("{}/CastorRestored/", home);
     fs::create_dir_all(&home_restore_dir).expect("Failed to create restore directory");
 
     let final_save_path = format!("{}{}", home_restore_dir, file_name);
