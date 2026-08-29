@@ -4,6 +4,7 @@ use std::io::{self, Write};
 use reed_solomon_erasure::galois_8::ReedSolomon;
 use sha2::{Sha256, Digest};
 
+
 fn start() {
     println!("Alpha_0.6");
 }
@@ -23,9 +24,10 @@ fn check_for_allig(num: usize, pieces_count: usize) -> usize {
     }
     add
 }
-
 fn reader() -> (Vec<u8>, String) {
+
     let final_path: String;
+
     println!("Do you want to change the file path? (y / n)  [ default (n) ]  ");
     let mut pathynyn = String::new();
     io::stdin()
@@ -78,7 +80,7 @@ fn crasher() {
     let size = check.len() / pieces_count;
     let mut master_space = Vec::new();
     let mut pieces = check.chunks_exact(size);
-    for _ in 0..pieces_count {
+        for _ in 0..pieces_count {
         master_space.push(pieces.next().unwrap().to_vec());
     }
 
@@ -87,7 +89,7 @@ fn crasher() {
     }
     let r = ReedSolomon::new(pieces_count, parity_count).unwrap();
     r.encode(&mut master_space).unwrap();
-    println!("Do you want to change the output directory? (y / n)  [ default (/home/nut/2Castor/) ]");
+        println!("Do you want to change the output directory? (y / n)  [ default (/home/nut/2Castor/) ]");
     let mut dir_choice = String::new();
     io::stdin().read_line(&mut dir_choice).expect("Failed to read choice");
 
@@ -132,19 +134,18 @@ fn crasher() {
     println!("Enter a name for this file:");
     let mut alias_input = String::new();
     io::stdin().read_line(&mut alias_input).expect("Failed to read name");
-    let alias = alias_input.trim();
+ let alias = alias_input.trim();
     let file_name = origin_path.split('/').last().unwrap_or("file.dat");
-    let link_line = format!("{}_{} = {} | {}\n", alias, file_name, manifest_hash, final_dir);
+    let link_line = format!("{}_{} = {}\n", alias, file_name, manifest_hash);
 
     let mut file = OpenOptions::new()
-        .create(true)
-        .append(true)
-        .open("links.txt")
-        .expect("Failed to open links.txt");
+    .create(true)
+    .append(true)
+    .open("links.txt")
+    .expect("Failed to open links.txt");
 
     file.write_all(link_line.as_bytes()).expect("Failed to write to links.txt");
 }
-
 fn restorer() {
     println!("--- Castor Restorer ---");
     let links_content = fs::read_to_string("links.txt")
@@ -159,17 +160,19 @@ fn restorer() {
     let clean_hash = manifest_hash.trim();
     println!("You chose hash: {}", clean_hash);
 
-    let mut auto_dir = String::from("/home/nut/2Castor/");
-    for line in links_content.lines() {
-        if line.contains(clean_hash) {
-            let parts: Vec<&str> = line.split(" | ").collect();
-            if parts.len() == 2 {
-                auto_dir = parts[1].trim().to_string();
-            }
-        }
+    println!("Enter the directory where your manifests are stored [ default (/home/nut/2Castor/) ]:");
+    let mut manifest_dir = String::new();
+    io::stdin().read_line(&mut manifest_dir).expect("Failed to read directory");
+
+    let mut clean_manifest_dir = manifest_dir.trim().to_string();
+    if clean_manifest_dir.is_empty() {
+        clean_manifest_dir = String::from("/home/nut/2Castor/");
+    }
+    if !clean_manifest_dir.ends_with('/') {
+        clean_manifest_dir.push('/');
     }
 
-    let manifest_path = format!("{}{}.manifest", auto_dir, clean_hash);
+    let manifest_path = format!("{}{}.manifest", clean_manifest_dir, clean_hash);
     let manifest_content = fs::read_to_string(&manifest_path)
         .expect("Failed to read manifest file!");
 
@@ -184,11 +187,23 @@ fn restorer() {
 
     println!("Total chunks to find: {}", chunk_hashes.len());
 
+    println!("Enter the directory where your chunks are stored [ default (/home/nut/2Castor/) ]:");
+    let mut chunks_dir = String::new();
+    io::stdin().read_line(&mut chunks_dir).expect("Failed to read directory");
+
+    let mut clean_chunks_dir = chunks_dir.trim().to_string();
+    if clean_chunks_dir.is_empty() {
+        clean_chunks_dir = String::from("/home/nut/2Castor/");
+    }
+    if !clean_chunks_dir.ends_with('/') {
+        clean_chunks_dir.push('/');
+    }
+
     let mut master_space = Vec::new();
     let mut alive_count = 0;
 
     for hash in chunk_hashes.iter() {
-        let chunk_path = format!("{}{}", auto_dir, hash);
+        let chunk_path = format!("{}{}", clean_chunks_dir, hash);
 
         let file_result = fs::read(&chunk_path);
 
@@ -224,23 +239,33 @@ fn restorer() {
     }
 
     let mut file_name = String::from("restored_file.dat");
-    for line in links_content.lines() {
+    let links_content_again = fs::read_to_string("links.txt").expect("Failed to read links.txt");
+
+    for line in links_content_again.lines() {
         if line.contains(clean_hash) {
-            let main_part = line.split(" | ").next().unwrap_or("");
-            let parts: Vec<&str> = main_part.split(" = ").collect();
+            let parts: Vec<&str> = line.split(" = ").collect();
             if parts.len() == 2 {
-                file_name = parts[0].trim().to_string();
+                file_name = parts[0].to_string();
             }
         }
     }
 
-    let home_restore_dir = String::from("/home/nut/CastorRestored/");
-    fs::create_dir_all(&home_restore_dir).expect("Failed to create restore directory");
+    println!("Enter the directory to save the restored file [ default (current project folder) ]:");
+    let mut save_dir = String::new();
+    io::stdin().read_line(&mut save_dir).expect("Failed to read directory");
 
-    let final_save_path = format!("{}{}", home_restore_dir, file_name);
+    let mut clean_save_dir = save_dir.trim().to_string();
+    if !clean_save_dir.is_empty() {
+        if !clean_save_dir.ends_with('/') {
+            clean_save_dir.push('/');
+        }
+    }
+
+    let final_save_path = format!("{}{}", clean_save_dir, file_name);
     fs::write(&final_save_path, final_file).expect("Failed to save file");
     println!("DONE! File restored successfully as '{}'!", final_save_path);
 }
+
 
 fn main() {
     start();
@@ -258,4 +283,5 @@ fn main() {
         println!("Unknown command: '{}'. Use 'crash' or 'restore'.", command);
     }
 }
+
 
