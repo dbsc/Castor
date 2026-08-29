@@ -14,5 +14,29 @@ Y888888888888888888888888888P  Y88888888P"
 
 ```
 
-A minimalist P2P file shredding utility built in Rust.
+## What it does
+Splits any file into secure chunks with 50% backup protection using Reed-Solomon math. If you lose some chunks, you can still fully restore the original file.
+
+
+## How to install
+1. Give permission to the installer script:
+   ```bash
+   chmod +x install.sh
+   ```
+2. Run the installer:
+   ```bash
+   ./install.sh
+   ```
+
+## How to use
+Now you can use the `castor` command anywhere in your terminal!
+
+* **To crash:**
+  ```bash
+  castor crash
+  ```
+* **To restore:**
+  ```bash
+  castor restore
+  ```
 
