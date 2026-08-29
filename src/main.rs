@@ -159,7 +159,7 @@ fn restorer() {
     let clean_hash = manifest_hash.trim();
     println!("You chose hash: {}", clean_hash);
 
-    let mut auto_dir = String::from("/home/nut/2Castor/");
+    let mut auto_dir = String::from("/home/");
     for line in links_content.lines() {
         if line.contains(clean_hash) {
             let parts: Vec<&str> = line.split(" | ").collect();
